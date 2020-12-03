@@ -1,12 +1,11 @@
 @import '~antd/dist/antd.css';
 
 @font-face{
-  font-family: 'Bitter-Bold';
-  src: url(../src/font/Bitter-Bold.otf)
+  font-family: 'BirdsOfParadisePersonalUseOnly-dX7X';
+  src: url(../../font/BirdsOfParadisePersonalUseOnly-dX7X.ttf)
 }
-@font-face{
-  font-family: 'AbrilFatface-Regular';
-  src: url(../src/font/AbrilFatface-Regular.ttf)  
+*{
+  font-family: 'Courier New', Courier, monospace;
 }
 .App {
   text-align: center;
@@ -23,9 +22,9 @@
   }
 }
 .header{
-  font-family: 'AbrilFatface-Regular';
-  font-size: 35px;
-  color: #E5E5E5;
+  font-family: 'BirdsOfParadisePersonalUseOnly-dX7X';
+  font-size: 40px;
+  color: #916158af;
   font-weight: 700;
 	letter-spacing: .01em;
 	padding: 10rem 0 0 4.5rem;
@@ -44,8 +43,8 @@
 }
 
 .heroBlock {
-  background: url('../src/public/zoomin.gif');
-  height: 90vh;
+  background: url('../../public/snow-main.gif');
+  height: 87vh;
   opacity: .7;
   background-repeat: no-repeat;
   background-position: center;
@@ -100,7 +99,6 @@ body {
   margin: 0 auto;
   max-width: 1200px;
   padding: 0 15px;
-
 }
 
 .ant-layout {
@@ -186,7 +184,10 @@ header
 }
 .bookClass {
   border: solid;
-  margin: 20px;
+  margin: 15px;
+  
+  margin: auto;
+  margin-bottom: 30px;
   border: solid;
   border-color: #D5D5D5;
   border-width: 8px;
@@ -198,3 +199,32 @@ header
   0 41.8px 33.4px rgba(0, 0, 0, 0.486),
   0 100px 80px rgba(0, 0, 0, 0.42);
 }
+
+.form-group{
+  margin: 30px;
+}
+
+.ant-input-search .ant-input-group .ant-input-affix-wrapper:not(:last-child) {
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+  text-align: center;
+}
+
+.containerHead{
+  margin: 30px;
+}
+
+.bookClass{
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+}
+.book-parent{
+  display: flex;
+  flex-wrap: wrap;
+}
+.book-child{
+  position: relative;
+  padding: 10px;
+}
+
