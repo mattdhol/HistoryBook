@@ -31,7 +31,7 @@
   text-shadow: .022em .022em .022em #111;
 }
 
-.App-header {
+.App-header{
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -184,10 +184,9 @@ header
 }
 .bookClass {
   border: solid;
-  margin: 15px;
-  
   margin: auto;
   margin-bottom: 30px;
+  margin: 20px;
   border: solid;
   border-color: #D5D5D5;
   border-width: 8px;
@@ -226,5 +225,36 @@ header
 .book-child{
   position: relative;
   padding: 10px;
+}
+.SignupPage, .LoginPage{
+  text-align: center;
+  font-size: 10px;
+  padding: 20px;
+  max-width: 1150px;
+  margin: auto;
+  width: 50%;
+  border: 5px solid #6A4943;
+  padding: 10px;
+  margin-top: 20px;
+  box-shadow: 5px 10px;
+  box-shadow:
+  0 2.8px 2.2px rgba(0, 0, 0, 0.434),
+  0 6.7px 5.3px rgba(0, 0, 0, 0.448),
+  0 12.5px 10px rgba(0, 0, 0, 0.46),
+  0 22.3px 17.9px rgba(0, 0, 0, 0.472),
+  0 41.8px 33.4px rgba(0, 0, 0, 0.486),
+  0 100px 80px rgba(0, 0, 0, 0.42);
+  vertical-align: middle;
+}
+.form-control{
+  text-align: center;
+}
+.header-footer{
+  font-family: 'BirdsOfParadisePersonalUseOnly-dX7X';
+  font-size: 40px;
+  color: #916158af;
+  font-weight: 700;
+	letter-spacing: .01em;
+  text-shadow: .022em .022em .022em #111;
 }
 

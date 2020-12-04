@@ -3,12 +3,15 @@ import { Link } from 'react-router-dom';
 import userService from '../../utils/userService';
 
 class SignupForm extends Component {
-  state = {
+  constructor(props) {
+    super(props);
+  this.state = {
     name: '',
     email: '',
     password: '',
     passwordConf: '',
   };
+  }
 
   handleChange = (e) => {
     this.props.updateMessage('');

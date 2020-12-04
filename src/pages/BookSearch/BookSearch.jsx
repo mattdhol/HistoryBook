@@ -52,7 +52,7 @@ function BookSearch (event) {
     <div className="book-parent">
       {result.map(book => (
       <a target="_blank" href={book.volumeInfo.infoLink}>
-        <Button type="dashed" block className="bookmark" to="/BookShelf">Book-Shelf It</Button>
+        <Button type="dashed" block className="bookmark" to="/BookShelf">Bookmark</Button>
         <div className="book-child">
         <img className="bookClass" src={((book.volumeInfo.imageLinks) 
           ? book.volumeInfo.imageLinks.thumbnail : undefined)} alt={book.volumeInfo.title}/>

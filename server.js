@@ -3,27 +3,34 @@ const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
 const mongoose = require('mongoose');
-const apiRoute = require('./routes/user')
-const app = express();
 
 require('dotenv').config();
+require('./config/database');
+
+const apiRoute = require('./routes/api/users')
+const app = express();
 
 app.use(logger('dev'));
 
 app.use(express.json());
 app.use('/api', apiRoute)
 
+// mongoose.Promise = global.Promise;
+// mongoose.connect(process.env.DATABASE_URL,  {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+//     useFindAndModify: false,
+//     useCreateIndex: true,
+//   })
+
 // Configure both serve-favicon & static middlewares
 // to serve from the production 'build' folder
 app.use(favicon(path.join(__dirname, 'build', 'favicon.ico')));
 app.use(express.static(path.join(__dirname, 'build')));
-mongoose.Promise = global.Promise;
-mongoose.connect(process.env.DATABASE_URL,  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false,
-    useCreateIndex: true,
-  })
+
+// Put API routes here, before the "catch all" route
+app.use('/api/users', require('./routes/api/users'));
+
 
 
 // Put API routes here, before the "catch all" route
