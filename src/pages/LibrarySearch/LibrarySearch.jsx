@@ -16,10 +16,11 @@ const suffix = (
   />
 );
 
-function LibrarySearch (event) {
+function LibrarySearch (props) {
   const [book, setBook] = useState("");
   const [result, setResult] = useState([]);
   const [API_KEY, setAPI_KEY] = useState("AIzaSyCNRcC7YqRUUq2P7QCfWvK0dLMiZytcTgI")
+
 
   function handleChange (event) {
     const book = event.target.value
@@ -53,7 +54,7 @@ function LibrarySearch (event) {
       {result.map(book => (
 <div>
         <div>
-      <Button type="dashed" block className="bookmark" to="/NightStand">Book Mark It</Button>
+      <Button type="dashed" block className="bookmark" to="/NightStand" onClick={() => props.handleBookMark(book)}>Book Mark It</Button>
       </div>
 
         <div>

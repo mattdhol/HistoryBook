@@ -32,9 +32,10 @@ handleSignupOrLogin = async () => {
   this.setState({ user: userService.getUser() });
 }
 
-handleBookMark = () =>{
-  // this.setState({ books })
-} 
+handleBookMark = (newBook) => {
+  console.log(newBook)
+  this.setState({books : [...this.state.books, newBook] })
+}
 
 render() {
   return (
@@ -50,7 +51,8 @@ render() {
       </Route>
 
     <Route exact path="/MyLibrary">
-      <MyBookMarks />
+      <MyBookMarks 
+      books={this.state.books}/>
       <MyNightStand />
       <MyArchives />
     </Route>
