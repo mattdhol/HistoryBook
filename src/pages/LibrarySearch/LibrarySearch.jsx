@@ -1,5 +1,4 @@
 import React, { useState } from "react"
-import { SearchOutlined } from '@ant-design/icons'
 import axios from 'axios';
 import { Button, Tooltip } from 'antd';
 import { Input } from 'antd';
@@ -17,7 +16,7 @@ const suffix = (
   />
 );
 
-function BookSearch (event) {
+function LibrarySearch (event) {
   const [book, setBook] = useState("");
   const [result, setResult] = useState([]);
   const [API_KEY, setAPI_KEY] = useState("AIzaSyCNRcC7YqRUUq2P7QCfWvK0dLMiZytcTgI")
@@ -50,14 +49,23 @@ function BookSearch (event) {
         </div>
       </form>
     <div className="book-parent">
+
       {result.map(book => (
+<div>
+        <div>
+      <Button type="dashed" block className="bookmark" to="/NightStand">Book Mark It</Button>
+      </div>
+
+        <div>
       <a target="_blank" href={book.volumeInfo.infoLink}>
-        <Button type="dashed" block className="bookmark" to="/BookShelf">Bookmark</Button>
         <div className="book-child">
         <img className="bookClass" src={((book.volumeInfo.imageLinks) 
           ? book.volumeInfo.imageLinks.thumbnail : undefined)} alt={book.volumeInfo.title}/>
         </div> 
         </a>
+      </div>
+</div>
+  
       ))}
       </div>
     </div>
@@ -67,4 +75,4 @@ function BookSearch (event) {
 
 
 
-export default BookSearch
+export default LibrarySearch

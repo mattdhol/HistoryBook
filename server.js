@@ -15,14 +15,6 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use('/api', apiRoute)
 
-// mongoose.Promise = global.Promise;
-// mongoose.connect(process.env.DATABASE_URL,  {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
-//     useFindAndModify: false,
-//     useCreateIndex: true,
-//   })
-
 // Configure both serve-favicon & static middlewares
 // to serve from the production 'build' folder
 app.use(favicon(path.join(__dirname, 'build', 'favicon.ico')));

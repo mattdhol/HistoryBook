@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import userService from "../../utils/userService"
 
 class LoginPage extends Component {
   
@@ -8,13 +9,24 @@ class LoginPage extends Component {
     pw: ''
   };
 
-  handleChange = (e) => {
-    // TODO: implement in an elegant way
-  }
 
-  handleSubmit = (e) => {
+  handleChange = (e) => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+  handleSubmit = async (e) => {
     e.preventDefault();
-  }
+    console.log("hit handle submit")
+    try {
+      await userService.login(this.state);
+      this.props.handleSignupOrLogin();
+      // Successfully signed up - show GamePage
+      this.props.history.push('/');
+    } catch (err) {
+      console.log(err, "this is the error");
+      alert('Invalid Credentials!');
+    }
+  };
 
   render() {
     return (

@@ -8,11 +8,9 @@ async function signup(req, res) {
 
   try {
     await user.save();
-    console.log("secret", SECRET)
     const token = createJWT(user);
     res.json({ token });
   } catch (err) {
-    console.log('err =' + err);
     // Probably a duplicate email
     res.status(400).json(err);
   }
@@ -20,10 +18,12 @@ async function signup(req, res) {
 
 async function login(req, res) {
   try {
+    console.log("hit constroller")
     const user = await User.findOne({ email: req.body.email }).select('+password');
-    console.log(user);
     if (!user) return res.status(401).json({ err: 'bad credentials' });
     user.comparePassword(req.body.pw, (err, isMatch) => {
+    console.log(user)
+    console.log("after mongoose method")
       if (isMatch) {
         const token = createJWT(user);
         res.json({ token });
