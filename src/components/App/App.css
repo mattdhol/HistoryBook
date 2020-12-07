@@ -198,6 +198,12 @@ header
 
 .form-group{
   margin: 30px;
+  text-align: center;
+  margin-left: 120px;
+  margin-right: 120px;
+}
+.ant-input{
+  text-align: center;
 }
 
 .ant-input-search .ant-input-group .ant-input-affix-wrapper:not(:last-child) {

@@ -5,7 +5,6 @@ const MyBookMarks = (props) => (
     
 <>
     <br></br>
-    
     <div className="hero-parent">
         <div className="heroBlock2">
             My Book Marks
@@ -13,7 +12,7 @@ const MyBookMarks = (props) => (
             {props.bookMark.map((eachBook) => (
                 <div>
                     <div>
-                        <Button type="dashed" block className="bookmark" to="/NightStand" onClick={() => props.handleNightStand(eachBook), props.createNotification('error')}>Add To Night Stand</Button>
+                        <Button type="dashed" block className="bookmark" to="/NightStand" onClick={() => props.handleNightStand(eachBook)}>Add To Night Stand</Button>
                     </div>
                     <div className="book-child">
                         <img className="bookClass" src={((eachBook.volumeInfo.imageLinks) 

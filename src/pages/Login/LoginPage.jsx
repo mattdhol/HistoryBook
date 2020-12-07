@@ -9,22 +9,20 @@ class LoginPage extends Component {
     pw: ''
   };
 
-
   handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
   handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("hit handle submit")
     try {
       await userService.login(this.state);
       this.props.handleSignupOrLogin();
       // Successfully signed up - show GamePage
       this.props.history.push('/');
     } catch (err) {
-      console.log(err, "this is the error");
-      alert('Invalid Credentials!');
+      console.error("this is the error" + err);
+      alert('Invalid 123 Credentials!');
     }
   };
 
@@ -32,21 +30,35 @@ class LoginPage extends Component {
     return (
       <div className="LoginPage">
         <header className="header-footer">Log In</header>
-        <form className="form-horizontal" onSubmit={this.handleSubmit} >
+        <form className="form-horizontal" onSubmit={this.handleSubmit}>
           <div className="form-group">
             <div className="col-sm-12">
-              <input type="email" className="form-control" placeholder="Email" value={this.state.email} name="email" onChange={this.handleChange} />
+              <input
+                type="email"
+                className="form-control"
+                placeholder="Email"
+                value={this.state.email}
+                name="email"
+                onChange={this.handleChange}
+              />
             </div>
           </div>
           <div className="form-group">
             <div className="col-sm-12">
-              <input type="password" className="form-control" placeholder="Password" value={this.state.pw} name="pw" onChange={this.handleChange} />
+              <input
+                type="password"
+                className="form-control"
+                placeholder="Password"
+                value={this.state.pw}
+                name="pw"
+                onChange={this.handleChange}
+              />
             </div>
           </div>
           <div className="form-group">
             <div className="col-sm-12 text-center">
               <button className="btn btn-default">Log In</button>&nbsp;&nbsp;&nbsp;
-              <Link to='/'>Cancel</Link>
+              <Link to="/">Cancel</Link>
             </div>
           </div>
         </form>

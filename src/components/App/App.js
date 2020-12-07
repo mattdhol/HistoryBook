@@ -13,6 +13,8 @@ import MyNightStand from "../MyNightStand/MyNightStand"
 import MyArchive from "../MyArchive/MyArchive"
 import {NotificationContainer, NotificationManager} from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
+import BookForm from "../../components/BookForm/BookForm"
+import Analytics from "../Analytics/Analytics"
 
 class App extends Component {
   constructor() {
@@ -109,7 +111,7 @@ render() {
     </Route>
 
     <Route exact path="/Analytics">
-    <LibrarySearch />
+    <Analytics />
     </Route>
 
     <Route
@@ -126,6 +128,12 @@ render() {
         <LoginPage history={history} handleSignupOrLogin={this.handleSignupOrLogin} />
       )}
     />
+    <Route exact path="/BookForm"> 
+      <BookForm 
+      bookArchive={this.state.bookArchive}
+      />
+    </Route>
+
    </Switch>
   </Router>
 </div>

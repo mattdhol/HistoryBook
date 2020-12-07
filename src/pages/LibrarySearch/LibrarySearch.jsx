@@ -54,7 +54,7 @@ function LibrarySearch (props) {
       {result.map(book => (
 <div>
         <div>
-      <Button type="dashed" block className="bookmark" to="/NightStand" onClick={() => props.handleBookMark(book)}>Book Mark It</Button>
+      <Button type="dashed" block className="bookmark" to="/NightStand" onClick={ () => props.handleBookMark(book)}>Book Mark It</Button>
       </div>
 
         <div>
