@@ -12,8 +12,8 @@ const BookForm = (props) => (
 
 <div>
   <br></br>
-    <div className="hero-parent">
-    <div className="heroBlock2"> Book Review
+  <div className="LoginPage">
+  <header className="header-footer">Book Review</header>
       <form className="form-group">
         <Form.Item>
           <DatePicker 
@@ -32,10 +32,10 @@ const BookForm = (props) => (
           placeholder="Rating"
            />
         </Form.Item>
-        <button >Add Review</button>
-        <Link to="/">Cancel</Link>
+        <button className="btn btn-default">Add Review</button>&nbsp;&nbsp;&nbsp;
+              <Link to="/">Cancel</Link>
       </form>
-    </div>
+
   </div>
 </div>
 )

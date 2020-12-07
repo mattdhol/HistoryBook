@@ -8,8 +8,10 @@ import {
   Link
 } from "react-router-dom";
 
-const AppHeader = (props) => (
-  
+const AppHeader = (props) => {
+  let nav = props.user ? (
+
+<div>
   <div className="container-cover">
     <div className="container-fluid">
       <div className="header" > History Book<ReadOutlined/>
@@ -29,24 +31,31 @@ const AppHeader = (props) => (
             <Link to="/Analytics">Analytics</Link>
           </Menu.Item>
           </Menu>
-
-          <Menu mode="horizontal" defaultActiveKey="home" className="navHeader">
           <Menu.Item key="">
             <Link to="" className='NavBar-link' onClick={props.handleLogout} >LOG OUT</Link>
           </Menu.Item>
+          </div> 
+      </div>
+    </div>
+  </div>
+<div className="container-cover">
+<div className="container-fluid">
+  
+ ) : (
+
+          <Menu mode="horizontal" defaultActiveKey="home" className="navHeader">
           <Menu.Item key="login">
             <Link to='/login' className='NavBar-link'>LOG IN</Link>
           </Menu.Item>
           <Menu.Item key="signup">
             <Link to='/signup' className='NavBar-link'>SIGN UP</Link>
-          </Menu.Item>
-      
+          </Menu.Item>     
         </Menu>
         </div> 
-      </div>
-    </div>
+     </div>
   </div>
-)
-
+  )
+return <div className="NavBar">{nav}</div>
+}
 
 export default AppHeader

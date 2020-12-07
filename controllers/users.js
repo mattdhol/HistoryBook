@@ -22,11 +22,8 @@ async function login(req, res) {
     const user = await User.findOne({ email: req.body.email }).select('+password');
     console.log(user);
     console.log(req.body)
-    if (!user) return res.status(401).json({ err: 'bad credentials' });
+    if (!user) {return res.status(401).json({ err: 'bad credentials' })};
     user.comparePassword(req.body.pw, (err, isMatch) => {
-    console.log(user);
-    console.log(err)
-    console.log("after login")
       if (isMatch) {
         const token = createJWT(user);
         res.json({ token });
