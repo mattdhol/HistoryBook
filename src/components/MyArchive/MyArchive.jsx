@@ -1,20 +1,16 @@
 import React from "react"
-import { Button } from 'antd';
 
-const MyBookMarks = (props) => (
-    
-<>
+
+
+const MyArchive = (props) => (
+<div>
     <br></br>
-    
     <div className="hero-parent">
         <div className="heroBlock2">
-            My Book Marks
+            My Archive
             <div className="book-parent">
-            {props.bookMark.map((eachBook) => (
+            {props.bookArchive.map((eachBook) => (
                 <div>
-                    <div>
-                        <Button type="dashed" block className="bookmark" to="/NightStand" onClick={() => props.handleNightStand(eachBook), props.createNotification('error')}>Add To Night Stand</Button>
-                    </div>
                     <div className="book-child">
                         <img className="bookClass" src={((eachBook.volumeInfo.imageLinks) 
                         ? eachBook.volumeInfo.imageLinks.thumbnail : undefined)} alt={eachBook.volumeInfo.title}/>
@@ -25,8 +21,8 @@ const MyBookMarks = (props) => (
         </div>
     </div>
     <br></br>
-</>
+</div>
 )
 
 
-export default MyBookMarks
+export default MyArchive

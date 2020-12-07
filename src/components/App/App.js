@@ -4,15 +4,15 @@ import AppHeader from '../AppHeader/AppHeader'
 import IntroBox from '../IntroBox/IntroBox'
 import BookSearch from '../../pages/LibrarySearch/LibrarySearch'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import  HomePage from '../../pages/HomePage/HomePage'
-import MyLibrary from '../../pages/MyLibrary/MyLibrary'
 import LoginPage from '../../pages/Login/LoginPage';
 import SignupPage from '../../pages/SignupPage/SignupPage'
 import userService from '../../utils/userService'
 import LibrarySearch from "../../pages/LibrarySearch/LibrarySearch";
 import MyBookMarks from "../MyBookMarks/MyBookMarks"
 import MyNightStand from "../MyNightStand/MyNightStand"
-import MyArchives from "../MyArchives/MyArchives"
+import MyArchive from "../MyArchive/MyArchive"
+import {NotificationContainer, NotificationManager} from 'react-notifications';
+import 'react-notifications/lib/notifications.css';
 
 class App extends Component {
   constructor() {
@@ -20,8 +20,34 @@ class App extends Component {
     this.state = {
       user: userService.getUser(),
       books: [],
+      bookMark: [],
+      nightStand: [],
+      bookArchive: [],
     }
   }
+
+createNotification = (type) => {
+  return () => {
+    console.log(type)
+    console.log("function hit")
+    switch (type) {
+      case 'info':
+        NotificationManager.info('Info message');
+        break;
+      case 'success':
+        NotificationManager.success('Success message', 'Title here');
+        break;
+      case 'warning':
+        NotificationManager.warning('Warning message', 'Close after 3000ms', 3000);
+        break;
+      case 'error':
+        NotificationManager.error('Error message', 'Click me!', 5000, () => {
+          alert('callback');
+        });
+        break;
+    }
+  };
+};
 
 handleLogout = () => {
   userService.logout();
@@ -33,9 +59,18 @@ handleSignupOrLogin = async () => {
 }
 
 handleBookMark = (newBook) => {
-  console.log(newBook)
-  this.setState({books : [...this.state.books, newBook] })
+  this.setState({bookMark : [...this.state.bookMark, newBook] })
 }
+
+handleNightStand = (newBook) => {
+  this.setState({nightStand : [...this.state.nightStand, newBook] })  
+}
+
+handleArchive = (newBook) => {
+  this.setState({bookArchive : [...this.state.bookArchive, newBook] })
+}
+
+
 
 render() {
   return (
@@ -51,14 +86,24 @@ render() {
       </Route>
 
     <Route exact path="/MyLibrary">
-      <MyBookMarks 
-      books={this.state.books}/>
-      <MyNightStand />
-      <MyArchives />
+      <MyBookMarks
+      createNotification={this.createNotification} 
+      handleNightStand={this.handleNightStand}
+      bookMark={this.state.bookMark}
+      />
+
+      <MyNightStand 
+      createNotification={this.createNotification}
+      handleArchive={this.handleArchive}
+      nightStand={this.state.nightStand}/>
+
+      <MyArchive
+      bookArchive={this.state.bookArchive}/>
     </Route>
 
     <Route exact path="/LibrarySearch">
       <LibrarySearch 
+      createNotification={this.createNotification}
       handleBookMark={this.handleBookMark}
       />
     </Route>
