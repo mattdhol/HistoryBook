@@ -300,3 +300,7 @@ header
   text-decoration: underline;
   background-color:#E5E5E5;
 }
+
+.NavBar-welcome{
+  font-size: 18px;
+}
