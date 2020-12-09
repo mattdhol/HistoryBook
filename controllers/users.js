@@ -48,16 +48,57 @@ function createJWT(user) {
 }
 
 async function booksave(req, res) {
-  const user = await User.findById(req.body.id);
+  const user = await User.findById(req.user.id);
   const book = await new Book({ volumeInfo: req.body.volumeInfo });
+  user.book.push(book);
   let result = await user.save();
   console.log(result);
   res.send("Book Saved!");
 }
 
 async function bookget(req, res) {
-  console.log(req.user);
-  const user = await User.findById(req.user._id);
+  try {
+    const user = await User.findById(req.user.id);
+    res.send(user.book);
+  } catch (err) {
+    res.send(err.message);
+  }
+}
+
+async function nightsave(req, res) {
+  try {
+    const user = await User.findById(req.user.id);
+    user.book.forEach((book) => {
+      if (book._id == req.body.id) {
+        book.bookStatus = req.body.bookStatus;
+      }
+    });
+    user
+      .save()
+      .then((user) => res.send(user.book))
+      .catch((err) => console.log(err));
+  } catch (err) {
+    res.send(err.message);
+  }
+}
+
+async function archivesave(req, res) {
+  try {
+    const user = await User.findById(req.user.id);
+    console.log(req.body);
+    user.book.forEach((book) => {
+      if (book._id == req.body.id) {
+        book.bookStatus = req.body.bookStatus;
+      }
+    });
+    console.log(user.book);
+    user
+      .save()
+      .then((user) => res.send(user.book))
+      .catch((err) => console.log(err));
+  } catch (err) {
+    res.send(err.message);
+  }
 }
 
 module.exports = {
@@ -65,4 +106,6 @@ module.exports = {
   login,
   booksave,
   bookget,
+  nightsave,
+  archivesave,
 };

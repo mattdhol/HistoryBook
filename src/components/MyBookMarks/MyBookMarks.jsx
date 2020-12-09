@@ -4,7 +4,7 @@ import { Button } from "antd";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const notify = () => toast("Get Readin' 😘");
+const notify = () => toast.info("That's The One 😘");
 
 const MyBookMarks = (props) => (
   <>
@@ -13,37 +13,35 @@ const MyBookMarks = (props) => (
       <div className="heroBlock2">
         My Book Marks
         <div className="book-parent">
-          {props.bookMark.map((eachBook) => (
-            <div>
+          <ToastContainer />
+          {props.books.map((eachBook, idx) => {
+            return eachBook.bookStatus === "bookMark" ? (
               <div>
-                <Button
-                  type="dashed"
-                  block
-                  className="bookmark"
-                  to="/NightStand"
-                  onClick={() => {
-                    props.handleNightStand(eachBook);
+                <div>
+                  <Button
+                    type="dashed"
+                    block
+                    className="bookmark"
+                    to="/NightStand"
+                    onClick={() => {
+                      props.handleNightStand(eachBook, idx);
 
-                    notify();
-                  }}
-                >
-                  Add To Night Stand
-                </Button>
-                <ToastContainer />
+                      notify();
+                    }}
+                  >
+                    Add To Night Stand
+                  </Button>
+                </div>
+                <div className="book-child">
+                  <img
+                    className="bookClass"
+                    src={eachBook.volumeInfo.image}
+                    alt={eachBook.volumeInfo.title}
+                  />
+                </div>
               </div>
-              <div className="book-child">
-                <img
-                  className="bookClass"
-                  src={
-                    eachBook.volumeInfo.imageLinks
-                      ? eachBook.volumeInfo.imageLinks.thumbnail
-                      : undefined
-                  }
-                  alt={eachBook.volumeInfo.title}
-                />
-              </div>
-            </div>
-          ))}
+            ) : null;
+          })}
         </div>
       </div>
     </div>

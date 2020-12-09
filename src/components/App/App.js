@@ -19,6 +19,7 @@ import {
   NotificationContainer,
   NotificationManager,
 } from "react-notifications";
+import tokenService from "../../utils/tokenService";
 
 const BASE_URL = "/api/users/";
 
@@ -28,9 +29,6 @@ class App extends Component {
     this.state = {
       user: userService.getUser(),
       books: [],
-      bookMark: [],
-      nightStand: [],
-      bookArchive: [],
     };
   }
 
@@ -47,9 +45,14 @@ class App extends Component {
     try {
       const res = await fetch(BASE_URL + "bookget", {
         method: "GET",
-        headers: new Headers({ "Content-Type": "application/json" }),
-        data: { token: localStorage.getItem("token") },
+        headers: new Headers({
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${tokenService.getToken()}`,
+        }),
       });
+
+      const books = await res.json();
+      this.setState({ books: books });
       // this.setState({ bookMark: [...this.state.bookMark, q] });
     } catch (err) {
       console.log("ERROR" + err);
@@ -58,29 +61,75 @@ class App extends Component {
 
   handleBookMark = async (newBook) => {
     try {
+      const bookData = {
+        volumeInfo: {
+          image: newBook.volumeInfo.imageLinks.thumbnail,
+          info: newBook.volumeInfo.infoLink,
+        },
+        bookStatus: "bookMark",
+      };
       const res = await fetch(BASE_URL + "booksave", {
         method: "POST",
-        headers: new Headers({ "Content-Type": "application/json" }),
-        body: JSON.stringify({
-          id: this.state.user.id,
-          volumeInfo: {
-            image: newBook.volumeInfo.imageLinks.thumbnail,
-            info: newBook.volumeInfo.infoLink,
-          },
+        headers: new Headers({
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${tokenService.getToken()}`,
         }),
+        body: JSON.stringify(bookData),
       });
-      this.setState({ bookMark: [...this.state.bookMark, newBook] });
+      this.setState({ books: [...this.state.books, bookData] });
     } catch (err) {
       console.log(err);
     }
   };
 
-  handleNightStand = (newBook) => {
-    this.setState({ nightStand: [...this.state.nightStand, newBook] });
+  handleNightStand = async (eachBook, idx) => {
+    console.log(eachBook);
+    try {
+      const bookData = {
+        id: eachBook._id,
+        bookStatus: "nightStand",
+      };
+      const res = await fetch(BASE_URL + "nightsave", {
+        method: "POST",
+        headers: new Headers({
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${tokenService.getToken()}`,
+        }),
+        body: JSON.stringify(bookData),
+      });
+      const newState = { ...this.state };
+      newState.books[idx].bookStatus = "nightStand";
+      this.setState(newState);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
-  handleArchive = (newBook) => {
-    this.setState({ bookArchive: [...this.state.bookArchive, newBook] });
+  handleArchive = async (eachBook, idx) => {
+    console.log(eachBook);
+    try {
+      const bookData = {
+        id: eachBook._id,
+        bookStatus: "bookArchive",
+      };
+      const res = await fetch(BASE_URL + "archiveSave", {
+        method: "POST",
+        headers: new Headers({
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${tokenService.getToken()}`,
+        }),
+        body: JSON.stringify(bookData),
+      });
+      const newState = { ...this.state };
+      newState.books[idx].bookStatus = "bookArchive";
+      this.setState(newState);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  handleBookForm = async (eachBook, idx) => {
+    console.log(eachBook);
   };
 
   render() {
@@ -96,16 +145,16 @@ class App extends Component {
               <MyBookMarks
                 createNotification={this.createNotification}
                 handleNightStand={this.handleNightStand}
-                bookMark={this.state.bookMark}
+                books={this.state.books}
               />
 
               <MyNightStand
                 createNotification={this.createNotification}
                 handleArchive={this.handleArchive}
-                nightStand={this.state.nightStand}
+                books={this.state.books}
               />
 
-              <MyArchive bookArchive={this.state.bookArchive} />
+              <MyArchive books={this.state.books} />
             </Route>
 
             <Route exact path="/LibrarySearch">

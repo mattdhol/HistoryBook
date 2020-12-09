@@ -6,7 +6,10 @@ let auth = require("../../config/auth");
 router.post("/signup", usersCtrl.signup);
 router.post("/login", usersCtrl.login);
 
-router.post("/booksave", usersCtrl.booksave);
+router.post("/booksave", auth, usersCtrl.booksave);
 router.get("/bookget", auth, usersCtrl.bookget);
+
+router.post("/nightsave", auth, usersCtrl.nightsave);
+router.post("/archivesave", auth, usersCtrl.archivesave);
 
 module.exports = router;

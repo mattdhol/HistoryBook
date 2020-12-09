@@ -9,7 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 const { Search } = Input;
 const onSearch = (value) => console.log(value);
 
-const notify = () => toast("Get Readin' 😘");
+const notify = () => toast.success("Book Added 👉👉👉");
 
 const suffix = (
   <AudioOutlined
@@ -49,8 +49,8 @@ function LibrarySearch(props) {
   <input type="text" />;
   return (
     <div>
-      <ToastContainer />
       <div className="container">
+        <ToastContainer />
         <div className="form-group">
           <Search
             type="text"
