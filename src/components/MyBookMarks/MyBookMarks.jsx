@@ -38,6 +38,9 @@ const MyBookMarks = (props) => (
                     src={eachBook.volumeInfo.image}
                     alt={eachBook.volumeInfo.title}
                   />
+                  <Button danger onClick={() => props.deleteBook(eachBook)}>
+                    Delete
+                  </Button>
                 </div>
               </div>
             ) : null;

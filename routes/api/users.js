@@ -12,4 +12,7 @@ router.get("/bookget", auth, usersCtrl.bookget);
 router.post("/nightsave", auth, usersCtrl.nightsave);
 router.post("/archivesave", auth, usersCtrl.archivesave);
 
+router.post("/bookForm", auth, usersCtrl.bookForm);
+router.post("/deleteBook", auth, usersCtrl.deleteBook);
+
 module.exports = router;

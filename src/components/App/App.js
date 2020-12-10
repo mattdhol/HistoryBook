@@ -29,6 +29,7 @@ class App extends Component {
     this.state = {
       user: userService.getUser(),
       books: [],
+      bookIdx: null,
     };
   }
 
@@ -106,7 +107,6 @@ class App extends Component {
   };
 
   handleArchive = async (eachBook, idx) => {
-    console.log(eachBook);
     try {
       const bookData = {
         id: eachBook._id,
@@ -128,8 +128,44 @@ class App extends Component {
     }
   };
 
-  handleBookForm = async (eachBook, idx) => {
-    console.log(eachBook);
+  handleBookForm = async (date, review, rating, id) => {
+    try {
+      const bookData = {
+        dateFinished: date.toISOString(),
+        rating: rating,
+        review: review,
+        id: id,
+      };
+      const res = await fetch(BASE_URL + "bookForm", {
+        method: "POST",
+        headers: new Headers({
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${tokenService.getToken()}`,
+        }),
+        body: JSON.stringify(bookData),
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  deleteBook = async (eachBook, idx) => {
+    try {
+      const res = await fetch(BASE_URL + "deleteBook", {
+        method: "POST",
+        headers: new Headers({
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${tokenService.getToken()}`,
+        }),
+        body: JSON.stringify(eachBook),
+      });
+      const user = await res.json();
+      const newState = { ...this.state };
+      this.setState(newState);
+      console.log(this.state);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   render() {
@@ -146,15 +182,21 @@ class App extends Component {
                 createNotification={this.createNotification}
                 handleNightStand={this.handleNightStand}
                 books={this.state.books}
+                deleteBook={this.deleteBook}
               />
 
               <MyNightStand
                 createNotification={this.createNotification}
                 handleArchive={this.handleArchive}
                 books={this.state.books}
+                deleteBook={this.deleteBook}
               />
 
-              <MyArchive books={this.state.books} />
+              <MyArchive
+                books={this.state.books}
+                bookIdx={(idx) => this.setState({ bookIdx: idx })}
+                deleteBook={this.deleteBook}
+              />
             </Route>
 
             <Route exact path="/LibrarySearch">
@@ -189,7 +231,10 @@ class App extends Component {
               )}
             />
             <Route exact path="/BookForm">
-              <BookForm bookArchive={this.state.bookArchive} />
+              <BookForm
+                book={this.state.books[this.state.bookIdx]}
+                handleBookForm={this.handleBookForm}
+              />
             </Route>
           </Switch>
         </Router>

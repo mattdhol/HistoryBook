@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Button } from "antd";
 
 const MyArchive = (props) => (
   <div>
@@ -12,13 +13,16 @@ const MyArchive = (props) => (
             return eachBook.bookStatus === "bookArchive" ? (
               <div>
                 <div className="book-child">
-                  <Link to="/BookForm">
+                  <Link onClick={() => props.bookIdx(idx)} to="/BookForm">
                     <img
                       className="bookClass"
                       src={eachBook.volumeInfo.image}
                       alt={eachBook.volumeInfo.title}
                     />
                   </Link>
+                  <Button danger onClick={() => props.deleteBook(eachBook)}>
+                    Delete
+                  </Button>
                 </div>
               </div>
             ) : null;

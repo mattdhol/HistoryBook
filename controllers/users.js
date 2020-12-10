@@ -6,7 +6,6 @@ const SECRET = process.env.SECRET;
 async function signup(req, res) {
   // password validation here...
   const user = new User(req.body);
-
   try {
     await user.save();
     const token = createJWT(user);
@@ -48,6 +47,7 @@ function createJWT(user) {
 }
 
 async function booksave(req, res) {
+  console.log(req.body);
   const user = await User.findById(req.user.id);
   const book = await new Book({ volumeInfo: req.body.volumeInfo });
   user.book.push(book);
@@ -60,23 +60,6 @@ async function bookget(req, res) {
   try {
     const user = await User.findById(req.user.id);
     res.send(user.book);
-  } catch (err) {
-    res.send(err.message);
-  }
-}
-
-async function nightsave(req, res) {
-  try {
-    const user = await User.findById(req.user.id);
-    user.book.forEach((book) => {
-      if (book._id == req.body.id) {
-        book.bookStatus = req.body.bookStatus;
-      }
-    });
-    user
-      .save()
-      .then((user) => res.send(user.book))
-      .catch((err) => console.log(err));
   } catch (err) {
     res.send(err.message);
   }
@@ -101,6 +84,57 @@ async function archivesave(req, res) {
   }
 }
 
+async function bookForm(req, res) {
+  console.log(req.body.id);
+  try {
+    const user = await User.findById(req.user.id);
+    const book = user.book.id(req.body.id);
+    book.review = req.body.review;
+    book.rating = req.body.rating;
+    book.date = req.body.date;
+    user
+      .save()
+      .then((user) => res.send(user.book))
+      .catch((err) => console.log(err));
+  } catch (err) {
+    res.send(err.message);
+  }
+}
+
+async function deleteBook(req, res) {
+  try {
+    const user = await User.findById(req.user.id);
+
+    const narray = user.book.filter((book) => req.body._id != book._id);
+    // console.log(narray);
+    user.book = narray;
+    user
+      .save()
+      .then((user) => res.send(user.book))
+      .catch((err) => console.log(err));
+  } catch (err) {
+    console.log(err.message);
+    res.send(err.message);
+  }
+}
+
+async function nightsave(req, res) {
+  try {
+    const user = await User.findById(req.user.id);
+    user.book.forEach((book) => {
+      if (book._id == req.body.id) {
+        book.bookStatus = req.body.bookStatus;
+      }
+    });
+    user
+      .save()
+      .then((user) => res.send(user.book))
+      .catch((err) => console.log(err));
+  } catch (err) {
+    res.send(err.message);
+  }
+}
+
 module.exports = {
   signup,
   login,
@@ -108,4 +142,6 @@ module.exports = {
   bookget,
   nightsave,
   archivesave,
+  bookForm,
+  deleteBook,
 };

@@ -1,12 +1,7 @@
-import React from "react"
-import { Menu, tabs } from 'antd';
-import { ReadOutlined } from '@ant-design/icons'
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
+import React from "react";
+import { Menu, tabs } from "antd";
+import { ReadOutlined } from "@ant-design/icons";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 const AppHeader = (props) => (
   <div className="container-cover">
@@ -24,15 +19,19 @@ const AppHeader = (props) => (
             <Menu.Item key="Home">
               <Link to="/">Home</Link>
             </Menu.Item>
-            <Menu.Item key="MyLibrary">
-              <Link to="/MyLibrary">My Library</Link>
-            </Menu.Item>
-            <Menu.Item key="LibrarySearch">
-              <Link to="/LibrarySearch">Library Search</Link>
-            </Menu.Item>
-            <Menu.Item key="Analytics">
-              <Link to="/Analytics">Analytics</Link>
-            </Menu.Item>
+            {props.user && (
+              <>
+                <Menu.Item key="MyLibrary">
+                  <Link to="/MyLibrary">My Library</Link>
+                </Menu.Item>
+                <Menu.Item key="LibrarySearch">
+                  <Link to="/LibrarySearch">Library Search</Link>
+                </Menu.Item>
+                <Menu.Item key="Analytics">
+                  <Link to="/Analytics">Analytics</Link>
+                </Menu.Item>
+              </>
+            )}
           </Menu>
           <Menu mode="horizontal" defaultActiveKey="home" className="navHeader">
             {props.user && (

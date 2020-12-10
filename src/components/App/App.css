@@ -1,11 +1,11 @@
-@import '~antd/dist/antd.css';
+@import "~antd/dist/antd.css";
 
-@font-face{
-  font-family: 'BirdsOfParadisePersonalUseOnly-dX7X';
-  src: url(../../font/BirdsOfParadisePersonalUseOnly-dX7X.ttf)
+@font-face {
+  font-family: "BirdsOfParadisePersonalUseOnly-dX7X";
+  src: url(../../font/BirdsOfParadisePersonalUseOnly-dX7X.ttf);
 }
-*{
-  font-family: 'Courier New', Courier, monospace;
+* {
+  font-family: "Courier New", Courier, monospace;
 }
 .App {
   text-align: center;
@@ -21,17 +21,17 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
-.header{
-  font-family: 'BirdsOfParadisePersonalUseOnly-dX7X';
+.header {
+  font-family: "BirdsOfParadisePersonalUseOnly-dX7X";
   font-size: 50px;
   color: #916158af;
   font-weight: 700;
-	letter-spacing: .01em;
-	padding: 10rem 0 0 4.5rem;
-  text-shadow: .022em .022em .022em #111;
+  letter-spacing: 0.01em;
+  padding: 10rem 0 0 4.5rem;
+  text-shadow: 0.022em 0.022em 0.022em #111;
 }
 
-.App-header{
+.App-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -43,28 +43,24 @@
 }
 
 .heroBlock {
-  background: url('../../public/snow-main.gif');
+  background: url("../../public/snow-main.gif");
   height: 87vh;
-  opacity: .7;
+  opacity: 0.7;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   border: solid;
-  border-color: #D5D5D5;
+  border-color: #d5d5d5;
   border-width: 18px;
-  box-shadow:
-  0 2.8px 2.2px rgba(0, 0, 0, 0.334),
-  0 6.7px 5.3px rgba(0, 0, 0, 0.348),
-  0 12.5px 10px rgba(0, 0, 0, 0.36),
-  0 22.3px 17.9px rgba(0, 0, 0, 0.372),
-  0 41.8px 33.4px rgba(0, 0, 0, 0.386),
-  0 100px 80px rgba(0, 0, 0, 0.32);
+  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.334),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.348), 0 12.5px 10px rgba(0, 0, 0, 0.36),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.372), 0 41.8px 33.4px rgba(0, 0, 0, 0.386),
+    0 100px 80px rgba(0, 0, 0, 0.32);
 }
 
-.hero-parent{
+.hero-parent {
   max-width: 1200px;
   margin: auto;
-  
 }
 .App-link {
   color: #61dafb;
@@ -79,17 +75,16 @@
   }
 }
 
-*/
-body {
+*/ body {
   font-size: 16px;
   line-height: 1.6;
   color: #333;
   overflow-x: hidden;
 }
 
-.container-cover{
-  background-color: #F0F0F0;
-  font-family: 'Courier New', Courier, monospace;
+.container-cover {
+  background-color: #f0f0f0;
+  font-family: "Courier New", Courier, monospace;
 }
 
 .container-fluid {
@@ -108,7 +103,6 @@ body {
   height: auto;
   line-height: 1.6;
 }
-
 
 /* 
 header
@@ -141,7 +135,7 @@ header
 
 .header .ant-menu li.ant-menu-item:before,
 .header .ant-menu li.ant-menu-item:after {
-  content: '';
+  content: "";
   background: #1890ff;
   width: 1px;
   position: absolute;
@@ -185,24 +179,22 @@ header
   margin-bottom: 30px;
   margin: 20px;
   border: solid;
-  border-color: #D5D5D5;
+  border-color: #d5d5d5;
   border-width: 8px;
-  box-shadow:
-  0 2.8px 2.2px rgba(0, 0, 0, 0.434),
-  0 6.7px 5.3px rgba(0, 0, 0, 0.448),
-  0 12.5px 10px rgba(0, 0, 0, 0.46),
-  0 22.3px 17.9px rgba(0, 0, 0, 0.472),
-  0 41.8px 33.4px rgba(0, 0, 0, 0.486),
-  0 100px 80px rgba(0, 0, 0, 0.42);
+  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.434),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.448), 0 12.5px 10px rgba(0, 0, 0, 0.46),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.472), 0 41.8px 33.4px rgba(0, 0, 0, 0.486),
+    0 100px 80px rgba(0, 0, 0, 0.42);
+  margin: auto;
 }
 
-.form-group{
+.form-group {
   margin: 30px;
   text-align: center;
   margin-left: 120px;
   margin-right: 120px;
 }
-.ant-input{
+.ant-input {
   text-align: center;
 }
 
@@ -212,54 +204,52 @@ header
   text-align: center;
 }
 
-.containerHead{
+.containerHead {
   margin: 30px;
 }
 
-.bookClass{
+.bookClass {
   display: flex;
   flex-wrap: wrap;
   position: relative;
 }
-.book-parent{
+.book-parent {
   display: flex;
   flex-wrap: wrap;
 }
-.book-child{
+.book-child {
   position: relative;
   padding: 10px;
 }
-.SignupPage, .LoginPage{
+.SignupPage,
+.LoginPage {
   text-align: center;
   font-size: 10px;
   padding: 20px;
   max-width: 1150px;
   margin: auto;
   width: 50%;
-  border: 5px solid #6A4943;
+  border: 5px solid #6a4943;
   padding: 10px;
   margin-top: 20px;
   box-shadow: 5px 10px;
-  box-shadow:
-  0 2.8px 2.2px rgba(0, 0, 0, 0.434),
-  0 6.7px 5.3px rgba(0, 0, 0, 0.448),
-  0 12.5px 10px rgba(0, 0, 0, 0.46),
-  0 22.3px 17.9px rgba(0, 0, 0, 0.472),
-  0 41.8px 33.4px rgba(0, 0, 0, 0.486),
-  0 100px 80px rgba(0, 0, 0, 0.42);
+  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.434),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.448), 0 12.5px 10px rgba(0, 0, 0, 0.46),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.472), 0 41.8px 33.4px rgba(0, 0, 0, 0.486),
+    0 100px 80px rgba(0, 0, 0, 0.42);
   vertical-align: middle;
   margin-top: 40px;
 }
-.form-control{
+.form-control {
   text-align: center;
 }
-.header-footer{
-  font-family: 'Courier New', Courier, monospace;
+.header-footer {
+  font-family: "Courier New", Courier, monospace;
   font-size: 40px;
   color: #916158af;
   font-weight: 700;
-	letter-spacing: .01em;
-  text-shadow: .022em .022em .022em #111;
+  letter-spacing: 0.01em;
+  text-shadow: 0.022em 0.022em 0.022em #111;
 }
 .bookClass {
   display: flex;
@@ -268,39 +258,34 @@ header
   width: 168px;
 }
 
-.bookmark{
+.bookmark {
   font-size: 17px;
   font-style: italic;
-    box-shadow:
-  0 2.8px 2.2px rgb(175,142,136),
-  0 100px 80px rgb(175,142,136);
+  box-shadow: 0 2.8px 2.2px rgb(175, 142, 136), 0 100px 80px rgb(175, 142, 136);
 }
 .heroBlock2 {
-  font-family: 'Courier New', Courier, monospace;
+  font-family: "Courier New", Courier, monospace;
   font-size: 30px;
-  color: #6A4943;
+  color: #6a4943;
   font-weight: 700;
-	letter-spacing: .01em;
-  text-shadow: .022em .022em .022em #111;
-  opacity: .7;
+  letter-spacing: 0.01em;
+  text-shadow: 0.022em 0.022em 0.022em #111;
+  opacity: 0.7;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   border: solid;
-  border-color: #D5D5D5;
+  border-color: #d5d5d5;
   border-width: 18px;
-  box-shadow:
-  0 2.8px 2.2px rgba(0, 0, 0, 0.334),
-  0 6.7px 5.3px rgba(0, 0, 0, 0.348),
-  0 12.5px 10px rgba(0, 0, 0, 0.36),
-  0 22.3px 17.9px rgba(0, 0, 0, 0.372),
-  0 41.8px 33.4px rgba(0, 0, 0, 0.386),
-  0 100px 80px rgba(0, 0, 0, 0.32);
+  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.334),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.348), 0 12.5px 10px rgba(0, 0, 0, 0.36),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.372), 0 41.8px 33.4px rgba(0, 0, 0, 0.386),
+    0 100px 80px rgba(0, 0, 0, 0.32);
   text-align: center;
   text-decoration: underline;
-  background-color:#E5E5E5;
+  background-color: #e5e5e5;
 }
 
-.NavBar-welcome{
+.NavBar-welcome {
   font-size: 18px;
 }
