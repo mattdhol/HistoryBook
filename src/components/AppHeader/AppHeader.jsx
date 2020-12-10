@@ -27,9 +27,9 @@ const AppHeader = (props) => (
                 <Menu.Item key="LibrarySearch">
                   <Link to="/LibrarySearch">Library Search</Link>
                 </Menu.Item>
-                <Menu.Item key="Analytics">
+                {/* <Menu.Item key="Analytics">
                   <Link to="/Analytics">Analytics</Link>
-                </Menu.Item>
+                </Menu.Item> */}
               </>
             )}
           </Menu>
